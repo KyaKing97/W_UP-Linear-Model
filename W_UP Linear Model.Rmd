@@ -9,7 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Read about the data from the website where it is staged.  Then form three regression models; Model1 is Model2 is SIMS~GRIP, and Model3 is SIMS~ARM+GRIP. For each model find a 95% prediction interval of SIMS given a value of 94  for GRIP and 88 for ARM. Compare Model1 with Model3 using anova. Write it up in a markdown document, push the project up to your github account and submit it back to canvas as link. 
+Read about the data from the website where it is staged.  Then form three regression models; Model1 is SIMS~ARMS Model2 is SIMS~GRIP, and Model3 is SIMS~ARM+GRIP. For each model find a 95% prediction interval of SIMS given a value of 94  for GRIP and 88 for ARM. Compare Model1 with Model3 using anova. Write it up in a markdown document, push the project up to your github account and submit it back to canvas as link. 
 
  
 
@@ -59,3 +59,36 @@ basicNN + geom_point() + geom_smooth(method=lm)
 
 The equation for SIMS explained by ARM is
 SIMS=-4.1+.0545*ARM
+
+```{r}
+basicAA <- ggplot(data,aes(y=SIMS,x=GRIP))
+```
+##Now add in scatterplot
+
+```{r}
+basicAA + geom_point()
+```
+
+
+  
+# Numerical results
+
+```{r}
+cor(SIMS~GRIP,data=data)
+```
+
+# Inferential  (Build linear model)
+  
+```{r}
+model.2 <- lm(SIMS~GRIP,data=data)
+summary.lm(model.2)
+```
+
+# now add the model fit to our plot
+  
+```{r}
+basicAA + geom_point() + geom_smooth(method=lm)
+``` 
+
+The equation for SIMS explained by GRIP is
+SIMS=-4.8+.045*GRIP
