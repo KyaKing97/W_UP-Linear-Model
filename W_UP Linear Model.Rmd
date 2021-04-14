@@ -51,6 +51,13 @@ model.1 <- lm(SIMS~ARM,data=data)
 summary.lm(model.1)
 ```
 
+```{r}
+newdata=data.frame(GRIP=94, ARM=88)
+predict(model.1,newdata,interval = "prediction")
+```
+
+
+
 # now add the model fit to our plot
   
 ```{r}
@@ -70,7 +77,6 @@ basicAA + geom_point()
 ```
 
 
-  
 # Numerical results
 
 ```{r}
@@ -82,13 +88,33 @@ cor(SIMS~GRIP,data=data)
 ```{r}
 model.2 <- lm(SIMS~GRIP,data=data)
 summary.lm(model.2)
+predict(model.2,newdata,interval="prediction")
 ```
 
 # now add the model fit to our plot
+
+
+
+
+
+  
+
+
+# Inferential  (Build linear model)
   
 ```{r}
-basicAA + geom_point() + geom_smooth(method=lm)
+model.3 <- lm(SIMS~ARM+GRIP,data=data)
+summary.lm(model.3)
+predict(model.3,newdata,interval="prediction")
 ``` 
+SIMS=-5.43+0.037 * ARM + 0.024 * GRIP
 
-The equation for SIMS explained by GRIP is
-SIMS=-4.8+.045*GRIP
+```{r}
+anova(model.1,model.3)
+```
+The p-value is 0.00000499, so reject the Null hypothesis. 
+
+
+
+
+
