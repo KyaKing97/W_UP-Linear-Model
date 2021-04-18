@@ -36,7 +36,7 @@ basicNN <- ggplot(data,aes(y=SIMS,x=ARM))
 basicNN + geom_point()
 ```
 
-
+Scatter plot shows positive relationship between ARM and SIM.The equation of the is SIMS = -4.1+0.05*ARM. The adjusted R-square is 0.467. The residual standard error is 1.226, residual standard error is its standard deviation of each normal spread of errors any piont on the line.
   
 # Numerical results
 
@@ -64,6 +64,9 @@ predict(model.1,newdata,interval = "prediction")
 basicNN + geom_point() + geom_smooth(method=lm)
 ``` 
 
+The equation for SIMS explained by ARM is SIMS= -4.1 + .0545* ARM
+The scatterplot shoes tht there is a positive between SIMS and ARM.
+
 The equation for SIMS explained by ARM is
 SIMS=-4.1+.0545*ARM
 
@@ -73,9 +76,10 @@ basicAA <- ggplot(data,aes(y=SIMS,x=GRIP))
 ##Now add in scatterplot
 
 ```{r}
-basicAA + geom_point()
+basicAA + geom_point() + geom_smooth(method=lm)
 ```
 
+The scatter plot shows a positive correlation between GRIP and SIM.
 
 # Numerical results
 
@@ -91,13 +95,6 @@ summary.lm(model.2)
 predict(model.2,newdata,interval="prediction")
 ```
 
-# now add the model fit to our plot
-
-
-
-
-
-  
 
 
 # Inferential  (Build linear model)
@@ -112,7 +109,7 @@ SIMS=-5.43+0.037 * ARM + 0.024 * GRIP
 ```{r}
 anova(model.1,model.3)
 ```
-The p-value is 0.00000499, so reject the Null hypothesis. 
+The anova model 1 with model 3. The null hypothesis is no difference in the ability to predict SIMS. The alternative hypothesis is that there is no difference. The pvalue is 0.00005 this so small that the diffince is the ability to predict SIMS is not due ti chance. The adjusted R square and standard deviation of errors both indicate ARM + GRIP model is better. The prediction for ARM + GRIP model is a 0.15 and the 95% confidance interval is -2.1 to 2.4.
 
 
 
